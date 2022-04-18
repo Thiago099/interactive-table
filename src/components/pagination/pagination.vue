@@ -4,7 +4,7 @@ import { ref, computed, getCurrentInstance } from 'vue'
 const {pages} = defineProps<{ pages: number, page:number }>()
 const { emit } = getCurrentInstance()
 const page_display = 15
-const page = ref(0)
+const page = ref(1)
 
 const display_pages = computed(() => {
     const result = []
@@ -65,17 +65,17 @@ const display_pages = computed(() => {
 
 function setPage(value: number){
     page.value = Number(value);
-    emit('page', page.value)
+    emit('update', page.value)
 }
 
 function nextPage(){
     page.value++;
-    emit('page', page.value)
+    emit('update', page.value)
 }
 
 function prevPage(){
     page.value--;
-    emit('page', page.value)
+    emit('update', page.value)
 }
 
 </script>

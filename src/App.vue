@@ -3,21 +3,14 @@
 // Check out https://vuejs.org/api/sfc-script-setup.html#script-setup
 // import HelloWorld from './components/HelloWorld.vue'
 import pagination from './components/pagination/pagination.vue'
+import search from './components/search/search.vue'
+import { ref } from 'vue'
+const found = ref(true)
 </script>
 
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
+
+  <search :found="found" @input="event=>found = event.target.value.length < 5"></search>
   <pagination page="0" pages="30"></pagination>
   <!-- <HelloWorld msg="Hello Vue 3 + TypeScript + Vite" /> -->
 </template>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
