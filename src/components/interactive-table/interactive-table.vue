@@ -65,7 +65,7 @@ function sort_table(column: any = null)
     updatePagination()
 }
 
-function updateSearch(value:string)
+function update_search(value:string)
 {
     const filtered = tableData.value.filter((item:any) => {
         for(const key in tableFields.value)
@@ -86,7 +86,7 @@ function updateSearch(value:string)
     updatePagination()
 }
 
-function setPage(event:any)
+function set_page(event:any)
 {
     page.value = event;
     updatePagination()
@@ -99,7 +99,7 @@ updatePagination()
     <div class="container">
         <search 
             :found="found" 
-            @input="updateSearch"
+            @input="update_search"
         ></search>
 
         <basic-table 
@@ -114,7 +114,7 @@ updatePagination()
         <pagination 
             :page="page" 
             :pages="pages" 
-            @input="setPage"
+            @input="set_page"
         ></pagination>
     </div>
 </template>
