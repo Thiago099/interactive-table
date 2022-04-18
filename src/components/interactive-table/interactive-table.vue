@@ -98,23 +98,23 @@ updatePagination()
 <template>
     <div class="container">
         <search 
-        :found="found" 
-        @input="updateSearch"
+            :found="found" 
+            @input="updateSearch"
         ></search>
 
         <basic-table 
-        :fields="tableFields" 
-        :data="display" 
-        :padding="per_page" 
-        @sort="sort_table($event)" 
-        :sort_order="sort_order" 
-        :sort_column="sort_column"
+            :fields="tableFields" 
+            :data="display" 
+            :padding="per_page" 
+            @sort="sort_table($event)" 
+            :sort_order="sort_order" 
+            :sort_column="sort_column"
         ></basic-table>
 
         <pagination 
-        :page="page" 
-        :pages="pages" 
-        @input="setPage"
+            :page="page" 
+            :pages="pages" 
+            @input="setPage"
         ></pagination>
     </div>
 </template>
