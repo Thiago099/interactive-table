@@ -106,7 +106,7 @@ updatePagination()
             :fields="tableFields" 
             :data="display" 
             :padding="per_page" 
-            @sort="sort_table($event)" 
+            @sort="sort_table" 
             :sort_order="sort_order" 
             :sort_column="sort_column"
         ></basic-table>
