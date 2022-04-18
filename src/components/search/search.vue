@@ -7,7 +7,7 @@ const last_search = ref("")
 const search = ref("")
 const display_search = ref("")
 function updateSearch(event: any){
-    emit('input', event)
+    emit('input', event.target.value)
     nextTick(()=>{
         if(found.value)
         {

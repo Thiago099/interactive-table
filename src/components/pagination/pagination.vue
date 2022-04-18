@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import { ref, computed, getCurrentInstance } from 'vue'
+import { ref, computed, getCurrentInstance, toRefs } from 'vue'
 
-const {pages} = defineProps<{ pages: number, page:number }>()
+const props = defineProps<{ pages: number, page:number }>()
+const { pages } = toRefs(props)
 const { emit } = getCurrentInstance()
 const page_display = 15
 const page = ref(1)
@@ -10,10 +11,10 @@ const display_pages = computed(() => {
     const result = []
     let start;
     let end;
-    if(page_display >= pages - 4)
+    if(page_display >= pages.value - 4)
     {
         start = 1;
-        end = pages;
+        end = pages.value;
     }
     else
     {
@@ -28,10 +29,10 @@ const display_pages = computed(() => {
         {
             leftpad = page.value - leftpad + 1
         }
-        if(page.value + rightpad > pages)
+        if(page.value + rightpad > pages.value)
         {
-            leftpad -= page.value + rightpad - pages
-            rightpad = pages
+            leftpad -= page.value + rightpad - pages.value
+            rightpad = pages.value
         }
         else
         {
@@ -48,11 +49,11 @@ const display_pages = computed(() => {
         {
             end +=1
         }
-        if(end >= pages)
+        if(end >= pages.value)
         {
             start -= 1;
         }
-        if(end >= pages-1)
+        if(end >= pages.value-1)
         {
             start -= 1;
         }
@@ -65,17 +66,17 @@ const display_pages = computed(() => {
 
 function setPage(value: number){
     page.value = Number(value);
-    emit('update', page.value)
+    emit('input', page.value)
 }
 
 function nextPage(){
     page.value++;
-    emit('update', page.value)
+    emit('input', page.value)
 }
 
 function prevPage(){
     page.value--;
-    emit('update', page.value)
+    emit('input', page.value)
 }
 
 </script>
