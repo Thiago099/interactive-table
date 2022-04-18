@@ -2,16 +2,23 @@
 import pagination from '@/components/pagination/pagination.vue'
 import search from '@/components/search/search.vue'
 import basicTable from './table-display/table-display.vue'
-import { ref, toRefs } from 'vue'
+
+import { ref, toRefs, withDefaults } from 'vue'
+
+
+
+const props = withDefaults(defineProps<{ tableFields: string[], tableData:object[], per_page:number }>(),{
+    per_page:10
+})
+
 const found = ref(true)
 const page = ref(1)
 const pages = ref(1)
-const per_page = ref(10)
+const per_page = ref(props.per_page)
 const sort_column = ref("null")
 const sort_order = ref(false)
 const display = ref([] as any[])
 
-const props = defineProps<{ tableFields: string[], tableData:object[] }>()
 const { tableFields, tableData  } = toRefs(props)
 
 const filteredData = ref(tableData.value)
