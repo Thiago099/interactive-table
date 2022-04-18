@@ -15,6 +15,7 @@ const props = defineProps<{ tableFields: string[], tableData:object[] }>()
 const { tableFields, tableData  } = toRefs(props)
 
 const filteredData = ref(tableData.value)
+
 function updatePagination(){
     if(page.value == 0)
     {
@@ -33,6 +34,7 @@ function updatePagination(){
     pages.value = Math.ceil(filteredData.value.length / per_page.value)
     display.value = filteredData.value.slice(comeco, final)
 }
+
 function sort_table(column: any = null) 
 {
     if(column != null)
@@ -83,6 +85,13 @@ function updateSearch(value:string)
     sort_table()
     updatePagination()
 }
+
+function setPage(event:any)
+{
+    page.value = event;
+    updatePagination()
+}
+
 updatePagination()
 </script>
 
@@ -105,7 +114,7 @@ updatePagination()
         <pagination 
         :page="page" 
         :pages="pages" 
-        @input="page = $event;updatePagination()"
+        @input="setPage"
         ></pagination>
     </div>
 </template>
